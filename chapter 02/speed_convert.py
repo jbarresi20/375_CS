@@ -1,3 +1,5 @@
+#This program is by Joe Barrei and converts MPH and M/s
+
 def main():
     print("So you wanna know how fast your going? You really couldn't be like every other country and use metric")
     print("Nonetheless here is the MPH converter 1600")

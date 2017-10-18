@@ -9,5 +9,5 @@ def main():
         x = 3.9 * x * (1 - x)
         print(i + 1, ":" , x)
 
-# main()
+main()
 
