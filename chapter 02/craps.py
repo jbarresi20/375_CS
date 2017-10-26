@@ -14,24 +14,39 @@
 # by Mr. Ciccolo
 
 import random
-
+winnings = 100
+bet = 0
+x = 1
 
 def main():
+    global winnings
+    global bet
+    global x
+
     display_welcome()
 
     play_again = True
     while play_again:
+        place_bet()
         total = roll_dice()
         if total == 7 or total == 11:
             print("You win!")
+            winnings = winnings + bet
         elif total == 2 or total == 3 or total == 12:
             print("You lose!")
+            winnings = winnings - bet
         else:
             re_roll(total)
-
         print() # Blank line for spacing
-        play_again = (input("Press enter to play another round or type 'N' to quit ") == '')
-        clear_screen()
+        if winnings > 5:
+            play_again = (input("Press 'Y' to play another round. Do anything else to keep your money") == 'Y')
+            clear_screen()
+        else:
+            clear_screen()
+            print("Sorry so much, your too broke to play in this casino.")
+            play_again = False
+    print("It was fun playing! You finish with $", winnings, sep = "")
+
 
 
 def clear_screen():
@@ -46,7 +61,6 @@ def display_welcome():
     print("$                                              $")
     print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
     print()
-
 
 def roll_dice():
     input("Press Enter to roll the dice...") # We don't do anything with the input, we're just using it to pause the game
@@ -63,8 +77,8 @@ def roll_dice():
 
     return total
 
-
 def re_roll(point):
+    global winnings, bet
     print("You have to keep rolling until you get another", point)
     print() # Blank line for spacing
 
@@ -74,8 +88,18 @@ def re_roll(point):
 
     if total == point:
         print("You win!")
+        winnings = winnings + bet
     else:
         print("You lose!")
+        winnings = winnings - bet
+
+
+def place_bet():
+    global bet
+    bet = eval(input("You have $" + str(winnings)+ ". How much do you want to bet? ($5-"+ str(winnings)+")"))
+    while bet < 5 or bet > winnings:
+        bet = eval(input("Nice Try type in another bet"))
+
 
 
 main()
