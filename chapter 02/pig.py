@@ -7,7 +7,7 @@ dicetotal = 0
 roll_total = 0
 player1total = 0
 player2total = 0
-WINNING_SCORE = 20
+WINNING_SCORE = 100
 
 
 def main():
@@ -15,9 +15,11 @@ def main():
     next_players_turn = 1
     welcome_screen()
     playernames()
+    #This while loop checks player scores as it rotates through turns
     while player1total < WINNING_SCORE and player2total < WINNING_SCORE:
         clearscreen()
         scoreboard()
+        #This if/ else function controls which players turn it is
         if next_players_turn == 1:
             print("It's", player1name, "'s turn", sep = "")
             play_turn()
@@ -30,7 +32,7 @@ def main():
             play_turn()
             player2total = dicetotal + player2total
             next_players_turn = 1
-
+    #This chooses, depending on who won, on who to direct the winning message to.
     if player1total >= WINNING_SCORE:
         print("Congrats",player1name, "You won! Now laugh in", player2name, "'s face", sep = " ")
     else:
@@ -43,6 +45,7 @@ def scoreboard():
     print("----------")
     print(player1name, player1total)
     print(player2name, player2total )
+    print("")
 
 
 
@@ -107,7 +110,7 @@ def playernames():
 
 def clearscreen():
     #This clears the screen in between rolls
-    for i in range (30):
+    for i in range (10):
         print("")
 
 main()
